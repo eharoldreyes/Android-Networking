@@ -18,7 +18,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 	    httpGet = new HttpGET(); //Creating a new instance of the request.	    
-	    httpGet.setUrl("http://gdata.youtube.com/feeds/api/playlists/56D792A831D0C362/?v=2&alt=json&feature=plcp"); //Setting the URL 
+	    httpGet.setUrl("http://stage.jualo.com/users/119394.json"); //Setting the URL 
 	    httpGet.setCallback(callBack); //Setting the Callback
 	    httpGet.execute(); //Executing the request
 	    	    
