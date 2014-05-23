@@ -26,19 +26,15 @@ public class MainActivity extends Activity {
 		tvUrl2 		= (TextView) findViewById(R.id.tvUrl2);
 		tvResult2 	= (TextView) findViewById(R.id.tvResult2);
 		
-		String url1 = "http://gdata.youtube.com/feeds/api/playlists/56D792A831D0C362/?v=2&alt=json&feature=plcp";
-	    tvUrl1.setText("Normal Encoding: " + url1);
+		
 		
 	    httpGet = new HttpGET(); //Creating a new instance of the request.	    
-	    httpGet.setUrl(url1); //Setting the URL 
+	    httpGet.setUrl("http://gdata.youtube.com/feeds/api/playlists/56D792A831D0C362/?v=2&alt=json&feature=plcp"); //Setting the URL 
 	    httpGet.setCallback(callBack); //Setting the Callback
 	    httpGet.execute(); //Executing the request
 	    	    
-	    String url2 = "https://api.stackexchange.com/2.2/questions?order=desc&sort=activity&site=stackoverflow";
-	    tvUrl2.setText("GZip Encoding: " + url2);
-	    
 	    httpGETUnGzipped = new HttpGET();
-	    httpGETUnGzipped.setUrl(url2);
+	    httpGETUnGzipped.setUrl("https://api.stackexchange.com/2.2/questions?order=desc&sort=activity&site=stackoverflow");
 	    httpGETUnGzipped.setCallback(unGZippedCallback);
 	    httpGETUnGzipped.execute();
 	    
@@ -56,7 +52,6 @@ public class MainActivity extends Activity {
 	    public void onResult(int responseCode, String responseMessage, Exception exception) {
 	        if(responseCode == 200 && exception == null){           
 	            Log.d("callback", "responseMessage: " + responseMessage);   
-	            tvResult1.setText(responseMessage);
 	        }               
 	    }               
 	};
@@ -66,7 +61,6 @@ public class MainActivity extends Activity {
 	    public void onResult(int responseCode, String responseMessage, Exception exception) {
 	        if(responseCode == 200 && exception == null){           
 	            Log.i("unGZippedCallback", "responseMessage: " + responseMessage);   
-	            tvResult2.setText(responseMessage);
 	        }               
 	    }               
 	};

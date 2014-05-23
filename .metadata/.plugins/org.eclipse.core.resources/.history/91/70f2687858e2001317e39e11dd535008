@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
 		tvResult2 	= (TextView) findViewById(R.id.tvResult2);
 		
 		String url1 = "http://gdata.youtube.com/feeds/api/playlists/56D792A831D0C362/?v=2&alt=json&feature=plcp";
-	    tvUrl1.setText("Normal Encoding: " + url1);
+	    tvUrl1.setText("Normal Encoding: " +url1);
 		
 	    httpGet = new HttpGET(); //Creating a new instance of the request.	    
 	    httpGet.setUrl(url1); //Setting the URL 
