@@ -141,7 +141,7 @@ public class WebserviceRequest {
 		@Override
 		protected void onPostExecute(Response result) {
 			super.onPostExecute(result);
-			this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); 
+			try { this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); } catch (Exception e) { e.printStackTrace(); } 
 			if (pd != null && pd.isShowing()) pd.dismiss();			
 		}		
 
@@ -231,7 +231,7 @@ public class WebserviceRequest {
 		@Override
 		protected void onPostExecute(Response result) {
 			super.onPostExecute(result);
-			this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); 
+			try { this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); } catch (Exception e) { e.printStackTrace(); } 
 			if (pd != null && pd.isShowing()) pd.dismiss();			
 		}
 		
@@ -320,7 +320,7 @@ public class WebserviceRequest {
 		@Override
 		protected void onPostExecute(Response result) {
 			super.onPostExecute(result);
-			this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); 
+			try { this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); } catch (Exception e) { e.printStackTrace(); } 
 			if (pd != null && pd.isShowing()) pd.dismiss();			
 		}
 		
@@ -402,7 +402,7 @@ public class WebserviceRequest {
 		@Override
 		protected void onPostExecute(Response result) {
 			super.onPostExecute(result);
-			this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); 
+			try { this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); } catch (Exception e) { e.printStackTrace(); } 
 			if (pd != null && pd.isShowing()) pd.dismiss();			
 		}
 		
@@ -500,7 +500,7 @@ public class WebserviceRequest {
 		@Override
 		protected void onPostExecute(Response result) {
 			super.onPostExecute(result);
-			this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); 
+			try { this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); } catch (Exception e) { e.printStackTrace(); } 
 			if (pd != null && pd.isShowing()) pd.dismiss();			
 		}
 				
@@ -584,7 +584,7 @@ public class WebserviceRequest {
 		@Override
 		protected void onPostExecute(Response result) {
 			super.onPostExecute(result);
-			this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); 
+			try { this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); } catch (Exception e) { e.printStackTrace(); } 
 			if (pd != null && pd.isShowing()) pd.dismiss();			
 		}
 				
