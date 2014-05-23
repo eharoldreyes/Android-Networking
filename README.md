@@ -3,6 +3,9 @@ Android-Networking
 
 Library for asynchronous execution of HttpGet, HttpPost, HttpPut, HttpDelete, Multipart-Put, Multipart-Post and HttpUrlConnection.
 
+USAGE
+---
+````html
 @Override
 public void onStart() {
 	super.onStart();
@@ -32,3 +35,6 @@ private WebserviceRequest.Callback callBack = new WebserviceRequest.Callback() {
 		}				
 	}				
 };
+````
+
+**For more details, send me a message [eharoldreyes@gmail.com](mailto:eharoldreyes@gmail.com)
