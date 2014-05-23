@@ -17,7 +17,7 @@ public void onStart() {
 	WebserviceRequest.HttpGET httpGet = new WebserviceRequest.HttpGET(); 
 
 	//Setting the URL 
-	httpGet.setUrl("http://gdata.youtube.com/feeds/api/playlists/56D792A831D0C362/?v=2&alt=json&feature=plcp");
+	httpGet.setUrl("http://ip.jsontest.com/");
 
 	//Setting the Callback
 	httpGet.setCallback(callBack);
@@ -42,7 +42,7 @@ private WebserviceRequest.Callback callBack = new WebserviceRequest.Callback() {
 };
 ````
 
-Add permissions to Manifest
+Adding permissions to Manifest
 
 ````html
 <uses-permission android:name="android.permission.INTERNET"/>
