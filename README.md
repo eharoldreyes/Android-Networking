@@ -3,26 +3,25 @@
 Android Networking
 ==================
 
-Library for asynchronous execution of HttpGet, HttpPost, HttpPut, HttpDelete, Multipart-Put, Multipart-Post and HttpUrlConnection with callback. Simplifies the amount of code needed for network communications. Compatible with Android versions 2.1 and above.
+Library for asynchronous execution of HttpGet, HttpPost, HttpPut, HttpDelete, Multipart-Put, Multipart-Post and HttpUrlConnection with callback. Simplifies the amount of code needed for network communications. Compatible with Android Versions 2.1 and above.
 
 
 Features
 ---
-- Compatible with **Android 1.5 Cupcake** (API level 3) and later
-- Make **asynchronous** HTTP requests
-- **GET**, **POST**, **PUT**, **DELETE** requests supported
-- Requests happens in **a background thread**
-- Results are in **Callback**
+- Compatible with **Android 2.1 Cupcake** (API level 7) and later
+- Executes **asynchronous** HTTP requests
+- Supports **GET**, **POST**, **PUT**, **DELETE** and **Multipart/form-data**
+- Supports **GZip**
 - Supports **Request Headers**
 - Supports **Basic Authentication**
-- **Multipart/form-data** support
+- Requests happens in **a background thread**
+- Results are in **Callback**
 
 TODO
 ---
 - HEAD request
 - OPTION request
 - HTTPS Support
-- GZip Decompression
 
 USAGE
 ---
