@@ -40,7 +40,7 @@ import android.util.Log;
 
 public class WebService {
 
-	private static final boolean DEBUG 			= false;
+	private static final boolean DEBUG 			= true;
 	private static final String tag 			= "WebService";	
 	
 	public static final String MESSAGE 			= "message";
