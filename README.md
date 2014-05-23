@@ -1,4 +1,4 @@
-![alt text](https://github.com/eharoldreyes/Android-Networking/blob/master/ic_launcher-web.png "Android-Networking")
+![alt text](https://raw.githubusercontent.com/eharoldreyes/Android-Networking/master/ic_launcher-web.png "Android-Networking")
 
 Android Networking
 ==================
