@@ -42,6 +42,14 @@ private WebserviceRequest.Callback callBack = new WebserviceRequest.Callback() {
 };
 ````
 
+Add permissions to Manifest
+
+````html
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+```` 
+
 **For more details, send me a message [eharoldreyes@gmail.com](mailto:eharoldreyes@gmail.com)
 
 Author
