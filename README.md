@@ -8,13 +8,21 @@ Library for asynchronous execution of HttpGet, HttpPost, HttpPut, HttpDelete, Mu
 
 Features
 ---
-- Compatible with **Android 2.1**  (API level 7) and later
+- Compatible with **Android 1.5 Cupcake** (API level 3) and later
 - Make **asynchronous** HTTP requests
-- GET, POST, PUT, DELETE requests supported
+- **GET**, **POST**, **PUT**, **DELETE** requests supported
 - Requests happens in **a background thread**
-- Results are in Callback
+- Results are in **Callback**
+- Supports **Request Headers**
 - Supports **Basic Authentication**
-- Multipart/form-data support
+- **Multipart/form-data** support
+
+TODO
+---
+- HEAD request
+- OPTION request
+- HTTPS Support
+- GZip Decompression
 
 USAGE
 ---
