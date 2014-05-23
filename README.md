@@ -23,9 +23,11 @@ public void onStart() {
 	httpGet.execute();
 }
 
+````
 
 Declaring a callback
 
+````html
 private WebserviceRequest.Callback callBack = new WebserviceRequest.Callback() {
 	@Override
 	public void onResult(int responseCode, String responseMessage, Exception exception) {
