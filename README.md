@@ -44,4 +44,6 @@ private WebserviceRequest.Callback callBack = new WebserviceRequest.Callback() {
 
 **For more details, send me a message [eharoldreyes@gmail.com](mailto:eharoldreyes@gmail.com)
 
-###### HAROLD
+Author
+------
+Harold Reyes | eharoldreyes@gmail.com
