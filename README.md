@@ -3,25 +3,32 @@ Android-Networking
 
 Library for asynchronous execution of HttpGet, HttpPost, HttpPut, HttpDelete, Multipart-Put, Multipart-Post and HttpUrlConnection.
 
-//Creating a new instance of request
-HttpGET httpGet = new HttpGET();
+@Override
+public void onStart() {
+	super.onStart();
 
-//Setting the URL 
-httpGet.setUrl("http://gdata.youtube.com/feeds/api/playlists/56D792A831D0C362/?v=2&alt=json&feature=plcp");
+	//Creating a new instance of the request.
+	HttpGET httpGet = new HttpGET(); 
 
-//Setting the Callback
-httpGet.setCallback(callBack);
+	//Setting the URL 
+	httpGet.setUrl("http://gdata.youtube.com/feeds/api/playlists/56D792A831D0C362/?v=2&alt=json&feature=plcp");
 
-//Executing the request
-httpGet.execute();
+	//Setting the Callback
+	httpGet.setCallback(callBack);
 
-//Getting the response from callback
+	//Executing the request
+	httpGet.execute();
+}
+
+
+Declaring a callback
+
 private WebserviceRequest.Callback callBack = new WebserviceRequest.Callback() {
-
-		@Override
-		public void onResult(int responseCode, String responseMessage, Exception exception) {
-			if(responseCode == 200 && exception == null){					
-			    Log.d("callback", "responseMessage: " + responseMessage);
-			}			
-		}	
-	};
+	@Override
+	public void onResult(int responseCode, String responseMessage, Exception exception) {
+		if(responseCode == 200 && exception == null){					
+			//Getting the response from callback
+			Log.d("callback", "responseMessage: " + responseMessage);   
+		}				
+	}				
+};
