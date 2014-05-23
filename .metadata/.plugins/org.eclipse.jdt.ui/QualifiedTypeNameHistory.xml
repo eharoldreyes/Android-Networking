@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="android.net.http.AndroidHttpClient"/>
+<fullyQualifiedTypeName name="org.apache.http.HttpEntity"/>
+<fullyQualifiedTypeName name="org.apache.http.HttpClientConnection"/>
+<fullyQualifiedTypeName name="java.sql.Connection"/>
+<fullyQualifiedTypeName name="org.apache.http.HttpConnection"/>
+<fullyQualifiedTypeName name="org.apache.http.client.HttpClient"/>
+<fullyQualifiedTypeName name="org.apache.http.HttpResponse"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="com.haroldreyes.androidnetworking.models.Response"/>
+<fullyQualifiedTypeName name="com.haroldreyes.androidnetworking.WebserviceRequest.HttpGET"/>
+<fullyQualifiedTypeName name="android.widget.TextView"/>
+<fullyQualifiedTypeName name="com.haroldreyes.sample.R.id"/>
+</qualifiedTypeNameHistroy>
