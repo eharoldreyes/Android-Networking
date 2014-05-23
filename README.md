@@ -1,9 +1,20 @@
 ![alt text](https://github.com/eharoldreyes/Android-Networking/blob/master/ic_launcher-web.png "Android-Networking")
 
-Android-Networking
+Android Networking
 ==================
 
-Library for asynchronous execution of HttpGet, HttpPost, HttpPut, HttpDelete, Multipart-Put, Multipart-Post and HttpUrlConnection.
+Library for asynchronous execution of HttpGet, HttpPost, HttpPut, HttpDelete, Multipart-Put, Multipart-Post and HttpUrlConnection with callback. Simplifies the amount of code needed for network communications. Compatible with Android versions 2.1 and above.
+
+
+Features
+---
+- Compatible with **Android 2.1**  (API level 7) and later
+- Make **asynchronous** HTTP requests
+- GET, POST, PUT, DELETE requests supported
+- Requests happens in **a background thread**
+- Results are in Callback
+- Supports **Basic Authentication**
+- Multipart/form-data support
 
 USAGE
 ---
@@ -57,3 +68,9 @@ Adding permissions to Manifest
 Author
 ------
 Harold Reyes | eharoldreyes@gmail.com
+
+
+License
+------
+Apache License, Version 2.0
+http://www.apache.org/licenses/LICENSE-2.0
