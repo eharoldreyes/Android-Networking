@@ -12,4 +12,12 @@
 <fullyQualifiedTypeName name="com.haroldreyes.androidnetworking.WebserviceRequest.HttpGET"/>
 <fullyQualifiedTypeName name="android.widget.TextView"/>
 <fullyQualifiedTypeName name="com.haroldreyes.sample.R.id"/>
+<fullyQualifiedTypeName name="com.haroldreyes.androidnetworking.WebServiceRequest.OnProgressChangeListener"/>
+<fullyQualifiedTypeName name="com.haroldreyes.androidnetworking.WebServiceRequest"/>
+<fullyQualifiedTypeName name="android.os.AsyncTask"/>
+<fullyQualifiedTypeName name="android.os.AsyncTask.Status"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="android.util.Log"/>
+<fullyQualifiedTypeName name="com.haroldreyes.sample.MainActivity"/>
+<fullyQualifiedTypeName name="com.haroldreyes.androidnetworking.WebService"/>
 </qualifiedTypeNameHistroy>

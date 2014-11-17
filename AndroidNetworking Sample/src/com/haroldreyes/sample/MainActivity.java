@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.haroldreyes.androidnetworking.WebserviceRequest;
-import com.haroldreyes.androidnetworking.WebserviceRequest.HttpGET;
+import com.haroldreyes.androidnetworking.WebService;
+import com.haroldreyes.androidnetworking.WebServiceRequest;
+import com.haroldreyes.androidnetworking.WebServiceRequest.HttpGET;
+import com.haroldreyes.androidnetworking.WebServiceRequest.HttpURLCONNECTION;
 
 public class MainActivity extends Activity {
 
@@ -16,6 +18,7 @@ public class MainActivity extends Activity {
 	private TextView tvResult1;
 	private TextView tvUrl2;
 	private TextView tvResult2;
+	private HttpURLCONNECTION httpUrlConnection;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,11 @@ public class MainActivity extends Activity {
 	    httpGETUnGzipped.setCallback(unGZippedCallback);
 	    httpGETUnGzipped.execute();
 	    
+	    httpUrlConnection = new HttpURLCONNECTION();
+	    httpUrlConnection.setUrl("http://gdata.youtube.com/feeds/api/playlists/56D792A831D0C362/?v=2&alt=json&feature=plcp");
+	    httpUrlConnection.setRequestMethod(WebService.METHOD_GET);
+	    httpUrlConnection.execute();	    
+	    
 	}
 	
 	@Override
@@ -51,7 +59,7 @@ public class MainActivity extends Activity {
 		if(httpGETUnGzipped != null) httpGETUnGzipped.cancel();
 	}
 	
-	private WebserviceRequest.Callback callBack = new WebserviceRequest.Callback() {
+	private WebServiceRequest.Callback callBack = new WebServiceRequest.Callback() {
 	    @Override
 	    public void onResult(int responseCode, String responseMessage, Exception exception) {
 	        if(responseCode == 200 && exception == null){           
@@ -61,7 +69,7 @@ public class MainActivity extends Activity {
 	    }               
 	};
 	
-	private WebserviceRequest.Callback unGZippedCallback = new WebserviceRequest.Callback() {
+	private WebServiceRequest.Callback unGZippedCallback = new WebServiceRequest.Callback() {
 	    @Override
 	    public void onResult(int responseCode, String responseMessage, Exception exception) {
 	        if(responseCode == 200 && exception == null){           
