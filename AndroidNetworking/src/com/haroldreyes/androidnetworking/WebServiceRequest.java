@@ -13,11 +13,19 @@ import org.apache.http.message.BasicNameValuePair;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.haroldreyes.androidnetworking.models.FileValuePair;
 import com.haroldreyes.androidnetworking.models.Response;
 
-public class WebserviceRequest {
+
+/*
+ * 
+ * Written by: Edgar Harold Reyes
+ * eharoldreyes@gmail.com
+ * 
+ */
+public class WebServiceRequest {
 			
 	public interface Callback {
 		public void onResult(int responseCode, String responseMessage, Exception exception);
@@ -26,7 +34,6 @@ public class WebserviceRequest {
 	public static class HttpGET extends AsyncTask<Void, Void, Response>{		
 
 		private Callback callback;
-		private ProgressDialog pd;
 		private String url;
 		private List<BasicNameValuePair> headers;
 		private List<BasicNameValuePair> requestHeaders;
@@ -34,7 +41,6 @@ public class WebserviceRequest {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			if(pd != null) pd.show();
 		}
 		
 		@Override
@@ -52,8 +58,9 @@ public class WebserviceRequest {
 		@Override
 		protected void onPostExecute(Response result) {
 			super.onPostExecute(result);
-			this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); 
-			if (pd != null && pd.isShowing()) pd.dismiss();			
+			if(this.callback != null){
+				this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); 				
+			} 
 		}
 		
 		public void cancel(){
@@ -66,14 +73,6 @@ public class WebserviceRequest {
 
 		public void setCallback(Callback callback) {
 			this.callback = callback;
-		}
-
-		public ProgressDialog getPd() {
-			return pd;
-		}
-
-		public void setPd(ProgressDialog pd) {
-			this.pd = pd;
 		}
 
 		public String getUrl() {
@@ -131,7 +130,9 @@ public class WebserviceRequest {
 		@Override
 		protected void onPostExecute(Response result) {
 			super.onPostExecute(result);
-			this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); 
+			if(this.callback != null){
+				this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); 				
+			} 		
 			if (pd != null && pd.isShowing()) pd.dismiss();			
 		}		
 		
@@ -218,7 +219,9 @@ public class WebserviceRequest {
 		@Override
 		protected void onPostExecute(Response result) {
 			super.onPostExecute(result);
-			this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); 
+			if(this.callback != null){
+				this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); 				
+			} 
 			if (pd != null && pd.isShowing()) pd.dismiss();			
 		}
 		
@@ -304,7 +307,9 @@ public class WebserviceRequest {
 		@Override
 		protected void onPostExecute(Response result) {
 			super.onPostExecute(result);
-			this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); 
+			if(this.callback != null){
+				this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); 				
+			} 
 			if (pd != null && pd.isShowing()) pd.dismiss();			
 		}
 		
@@ -384,7 +389,9 @@ public class WebserviceRequest {
 		@Override
 		protected void onPostExecute(Response result) {
 			super.onPostExecute(result);
-			this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); 
+			if(this.callback != null){
+				this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); 				
+			} 
 			if (pd != null && pd.isShowing()) pd.dismiss();			
 		}
 		
@@ -481,7 +488,9 @@ public class WebserviceRequest {
 		@Override
 		protected void onPostExecute(Response result) {
 			super.onPostExecute(result);
-			this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); 
+			if(this.callback != null){
+				this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); 				
+			} 
 			if (pd != null && pd.isShowing()) pd.dismiss();			
 		}
 		
@@ -546,7 +555,11 @@ public class WebserviceRequest {
 		}
 	}
 	
-	public static class HttpURLCONNECTION extends AsyncTask<Void, Void, Response>{		
+	public interface OnProgressChangeListener{
+		public void onProgressChanged(int progress);
+	}
+	
+	public static class HttpURLCONNECTION extends AsyncTask<Void, Integer, Response>{		
 		
 		private Callback callback;
 		private ProgressDialog pd;
@@ -554,6 +567,18 @@ public class WebserviceRequest {
 		private List<BasicNameValuePair> headers;
 		private String requestMethod;
 		private String parameters;
+		private OnProgressChangeListener onProgressChangeListener;
+		
+		public HttpURLCONNECTION(){
+			onProgressChangeListener = new OnProgressChangeListener() {				
+				@Override
+				public void onProgressChanged(int progress) {
+					if(HttpURLCONNECTION.this.getStatus() == AsyncTask.Status.RUNNING){
+						HttpURLCONNECTION.this.onProgressUpdate(progress);
+					}					
+				}
+			};
+		}
 		
 		@Override
 		protected void onPreExecute() {
@@ -562,10 +587,16 @@ public class WebserviceRequest {
 		}
 		
 		@Override
+		protected void onProgressUpdate(Integer... values) {
+			super.onProgressUpdate(values);
+			Log.d("HttpURLCONNECTION", values[0] + "%");
+		}
+		
+		@Override
 		protected Response doInBackground(Void... params) {			
 			Response response;
 			try {
-				response = WebService.HttpUrlConnection(this.url, this.requestMethod, this.headers, this.parameters);
+				response = WebService.HttpUrlConnection(this.url, this.requestMethod, this.headers, this.parameters, onProgressChangeListener);
 			} catch (Exception e) {
 				response = new Response();
 				response.setException(e);
@@ -576,7 +607,9 @@ public class WebserviceRequest {
 		@Override
 		protected void onPostExecute(Response result) {
 			super.onPostExecute(result);
-			this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); 
+			if(this.callback != null){
+				this.callback.onResult(result.getResponseCode(), result.getResponseMesssage(), result.getException()); 				
+			} 
 			if (pd != null && pd.isShowing()) pd.dismiss();			
 		}
 		

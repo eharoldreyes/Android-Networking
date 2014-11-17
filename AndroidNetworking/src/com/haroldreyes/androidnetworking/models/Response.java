@@ -8,7 +8,12 @@
 package com.haroldreyes.androidnetworking.models;
 
 import org.apache.http.HttpResponse;
-
+/*
+ * 
+ * Written by: Edgar Harold Reyes
+ * eharoldreyes@gmail.com
+ * 
+ */
 public class Response {
 	private HttpResponse httpResponse;
 	private Exception exception;

@@ -31,16 +31,26 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-
-import com.haroldreyes.androidnetworking.models.FileValuePair;
-import com.haroldreyes.androidnetworking.models.Response;
+import org.apache.http.params.CoreConnectionPNames;
+import org.apache.http.params.HttpParams;
 
 import android.net.http.AndroidHttpClient;
 import android.util.Log;
 
+import com.haroldreyes.androidnetworking.models.FileValuePair;
+import com.haroldreyes.androidnetworking.models.Response;
+
+
+
+/*
+ * 
+ * Written by: Edgar Harold Reyes
+ * eharoldreyes@gmail.com
+ * 
+ */
+
 public class WebService {
 
-	private static final boolean DEBUG 			= false;
 	private static final String tag 			= "WebService";	
 	
 	public static final String MESSAGE 			= "message";
@@ -53,6 +63,8 @@ public class WebService {
 	public static final String METHOD_PUT 		= "PUT";
 	public static final String METHOD_GET 		= "GET";
 			
+	private static final boolean DEBUG 			= true;
+	private static final int TIME_OUT 			= 10000;
 	
 	public static String getUngzippedResponseMessage(HttpEntity entity) throws IOException {
 		StringBuilder builder 	= new StringBuilder();
@@ -68,7 +80,8 @@ public class WebService {
 	
 	public static Response GET(String url, List<BasicNameValuePair> requestHeaders, List<BasicNameValuePair> headers) throws ClientProtocolException, IOException {
 		HttpClient httpclient = new DefaultHttpClient();
-		HttpGet httpget = new HttpGet(url);				
+		HttpGet httpget = new HttpGet(url);		
+		
 		
 		if(DEBUG) Log.i(tag, "Http GET URL: " + url);	
 		
@@ -85,6 +98,12 @@ public class WebService {
 				httpget.setHeader(header.getName(), header.getValue());						
 			}	
 		}
+		
+
+	    HttpParams params = httpget.getParams();
+	    params.setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, Integer.valueOf(TIME_OUT));
+	    params.setParameter(CoreConnectionPNames.SO_TIMEOUT, Integer.valueOf(TIME_OUT));
+	    httpget.setParams(params);
 		
 		HttpResponse httpResponse = httpclient.execute(httpget);
 				
@@ -103,6 +122,8 @@ public class WebService {
 	public static Response POST(String url, List<BasicNameValuePair> requestHeaders, List<BasicNameValuePair> headers, List<BasicNameValuePair> parameters) throws ClientProtocolException, IOException {
 		HttpClient httpclient = new DefaultHttpClient();		
 		HttpPost httpPost = new HttpPost(url);
+
+		if(DEBUG) Log.i(tag, "Http POST URL: " + url);	
 		
 		if(requestHeaders != null){				
 			for (BasicNameValuePair requestHeader : requestHeaders) {
@@ -122,6 +143,13 @@ public class WebService {
 			if(DEBUG) Log.i(tag, "Http POST PARAMETER: " + parameters.toString());	
 			httpPost.setEntity(new UrlEncodedFormEntity(parameters));					
 		}
+		
+
+
+	    HttpParams params = httpPost.getParams();
+	    params.setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, Integer.valueOf(TIME_OUT));
+	    params.setParameter(CoreConnectionPNames.SO_TIMEOUT, Integer.valueOf(TIME_OUT));
+	    httpPost.setParams(params);
 		
 		HttpResponse httpResponse = httpclient.execute(httpPost);
 				
@@ -319,16 +347,18 @@ public class WebService {
 	
 	
 	
-	public static Response HttpUrlConnection(String url, String requestMethod, List<BasicNameValuePair> headers, String parameters) throws IOException{
+	public static Response HttpUrlConnection(String url, String requestMethod, List<BasicNameValuePair> headers, String parameters, WebServiceRequest.OnProgressChangeListener onProgressChangeListener) throws IOException{
 		InputStreamReader isr = null;
 		BufferedReader reader = null;
 		Response webserviceResponse = new Response();
 				
 		java.net.URL newURL = new URL(url);
+		if(DEBUG) Log.i(tag, "HttpUrlConnection url: " + url);	
 	    HttpURLConnection connection = (HttpURLConnection) newURL.openConnection();
 	    connection.setDoOutput(true);
 	    
 	    for (BasicNameValuePair header : headers) {
+			if(DEBUG) Log.i(tag, "HttpUrlConnection header: " + header.toString());	
 		    connection.setRequestProperty(header.getName(), header.getValue());				
 		}		    
 	    
@@ -336,14 +366,21 @@ public class WebService {
         
 	    OutputStreamWriter request = new OutputStreamWriter(connection.getOutputStream());
 	    request.write(parameters);
+
+		if(DEBUG) Log.i(tag, "HttpUrlConnection parameter: " + parameters);	
 	    request.flush();
 	    request.close();            
 	    String line = "";               
 	    isr = new InputStreamReader(connection.getInputStream());
 	    reader = new BufferedReader(isr);
 	    StringBuilder sb = new StringBuilder();
+	    
+	    int readBytes = 0;
 		while ((line = reader.readLine()) != null) {
 			sb.append(line + "\n");
+		    readBytes += line.getBytes("ISO-8859-2").length + 2; // CRLF bytes!!
+			Log.d("HttpUrlConnection", readBytes + "%");
+		    if(onProgressChangeListener != null) onProgressChangeListener.onProgressChanged(readBytes);
 		}            
 		
 	    String response = sb.toString();

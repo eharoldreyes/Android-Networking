@@ -8,7 +8,12 @@
 package com.haroldreyes.androidnetworking.models;
 
 import java.io.File;
-
+/*
+ * 
+ * Written by: Edgar Harold Reyes
+ * eharoldreyes@gmail.com
+ * 
+ */
 public class FileValuePair {
 
 	private File file;
